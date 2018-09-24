@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="182.0" prefWidth="611.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
+   <children>
+      <TextField fx:id="number1" layoutX="22.0" layoutY="26.0" prefHeight="65.0" prefWidth="76.0" />
+      <TextField fx:id="number2" layoutX="162.0" layoutY="26.0" prefHeight="65.0" prefWidth="76.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="109.0" layoutY="33.0" prefHeight="42.0" prefWidth="41.0" text="*">
+         <font>
+            <Font name="System Bold" size="35.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="253.0" layoutY="33.0" prefHeight="42.0" prefWidth="41.0" text="=">
+         <font>
+            <Font name="System Bold" size="35.0" />
+         </font>
+      </Label>
+      <Label fx:id="result" alignment="CENTER" contentDisplay="CENTER" layoutX="296.0" layoutY="33.0" prefHeight="51.0" prefWidth="299.0" textAlignment="CENTER" />
+      <Button fx:id="multiplyButton" layoutX="250.0" layoutY="106.0" mnemonicParsing="false" onAction="#mBut" prefHeight="51.0" prefWidth="89.0" text="Multiply">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
