@@ -4,33 +4,37 @@ import java.math.BigInteger;
 
 public class Karatsuba {
 	
+	private final  BigInteger TEN = BigInteger.valueOf((long)10);
+	
 	public Karatsuba() {
 		
 	}
 	
-	public BigInteger karatsuba(BigInteger num1, BigInteger num2) {
-		  int posiciones = Math.max(num1.bitLength(), num2.bitLength());
-		  //Para n < 1000 es más eficiente la multiplicación normal.
-		  if (posiciones <= 1000) {
-		      return num1.multiply(num2);
-		  }
-		  posiciones = posiciones / 2;
+	public  BigInteger karatsuba(BigInteger i, BigInteger j) { 
+	    if (i.compareTo(TEN) == -1 || j.compareTo(TEN) == -1) { 
+	     return i.multiply(j) ; 
+	    } 
+	    double n = Math.round(getCount(i)); 
+	    if (n % 2 == 1) { 
+	     n++; 
+	    } 
+	    BigInteger a =  (i.divide(BigInteger.valueOf((long) Math.pow(10, Math.round(n/2))))); 
+	    BigInteger b =  (i.mod(BigInteger.valueOf((long) Math.pow(10, Math.round(n/2))))); 
+	    BigInteger c =  (j.divide(BigInteger.valueOf((long) Math.pow(10, Math.round(n/2))))); 
+	    BigInteger d =  (j.mod(BigInteger.valueOf((long) Math.pow(10, Math.round(n/2))))); 
 
-		  BigInteger b = num1.shiftRight(posiciones);
-		  BigInteger a = num1.subtract(b.shiftLeft(posiciones));
-		  BigInteger d = num2.shiftRight(posiciones);
-		  BigInteger c = num2.subtract(d.shiftLeft(posiciones));
+	    BigInteger first = karatsuba(a, c); 
+	    BigInteger second = karatsuba(b, d); 
+	    BigInteger third = karatsuba(a.add(b), c.add(d)); 
 
-		 
-		  BigInteger z0 = karatsuba(a, c); //z0=a*c
-		  BigInteger z1 = karatsuba(a.add(b), c.add(d)); //z1=(a+b)*(c+d)
-		  BigInteger z2 = karatsuba(b, d); //z2=b*d
-
-		  BigInteger result = z1.subtract(z2).subtract(z0); //z1-z2-z0
-
-		  
-		  return z2.shiftLeft(2 * posiciones).add(result.shiftLeft(posiciones)).add(z0);
-		} 
+	    return (( ((first.multiply( BigInteger.valueOf((long) Math.pow(10, n)))).add(((third.subtract( first ).subtract(second) ).multiply(BigInteger.valueOf((long) Math.pow(10, Math.round(n/2))))).add(second))))) ; 
+	} 
 	
+	private int getCount(BigInteger i) { 
+	    String totalN= i.toString(); 
+	    return totalN.length(); 
+	} 
+	
+
 
 }
